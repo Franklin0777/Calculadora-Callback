@@ -1,0 +1,4 @@
+Nome: Franklin
+Curso: ADS
+Linguagens: JavaScript, Python
+Objetivo: Ser um grande desenvolvedor
