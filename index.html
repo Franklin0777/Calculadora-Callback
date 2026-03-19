@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora - Franklin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculadora">
+
+        <!-- Topo com marca -->
+        <div class="calc-header">
+            <span class="marca">FRANKLIN</span>
+            <span class="modelo">PRO · 2026</span>
+        </div>
+
+        <!-- Visor com resultado -->
+        <div class="visor">
+            <div class="visor-historico" id="historico"></div>
+            <h2 class="visor-resultado" id="resultado">0</h2>
+        </div>
+
+        <!-- Inputs para digitar os números -->
+        <div class="inputs">
+            <div class="campo">
+                <label for="n1">Número 1</label>
+                <input type="number" id="n1" placeholder="0">
+            </div>
+            <div class="campo">
+                <label for="n2">Número 2</label>
+                <input type="number" id="n2" placeholder="0">
+            </div>
+        </div>
+
+        <!-- Botões passando a FUNÇÃO como CALLBACK no onclick -->
+        <div class="operacoes">
+            <button class="btn btn-op" onclick="calcular(somar, '+')">+</button>
+            <button class="btn btn-op" onclick="calcular(subtrair, '−')">−</button>
+            <button class="btn btn-op" onclick="calcular(multiplicar, '×')">×</button>
+            <button class="btn btn-op" onclick="calcular(dividir, '÷')">÷</button>
+        </div>
+
+        <!-- Botão limpar -->
+        <button class="btn btn-limpar" onclick="limpar()">C - Limpar</button>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

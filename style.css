@@ -1,0 +1,326 @@
+/* Importar fonte */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;700&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0c0c18;
+    background-image:
+        radial-gradient(ellipse at 30% 40%, rgba(255, 149, 0, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 60%, rgba(52, 199, 89, 0.05) 0%, transparent 50%);
+    font-family: 'Outfit', sans-serif;
+}
+
+/* ================================ */
+/*      CORPO DA CALCULADORA        */
+/* ================================ */
+.calculadora {
+    width: 380px;
+    background: linear-gradient(165deg, #1e1e32 0%, #181828 50%, #141422 100%);
+    border-radius: 30px;
+    padding: 28px 24px 32px;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    animation: surgir 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Animação de entrada */
+@keyframes surgir {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ================================ */
+/*        HEADER / MARCA            */
+/* ================================ */
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6px 18px;
+}
+
+.marca {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: rgba(255, 149, 0, 0.5);
+}
+
+.modelo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.12);
+}
+
+/* ================================ */
+/*            VISOR                  */
+/* ================================ */
+.visor {
+    background: #0a0a14;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 24px;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: inset 0 6px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Brilho no vidro do visor */
+.visor::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+    pointer-events: none;
+    border-radius: 20px 20px 0 0;
+}
+
+.visor-historico {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.25);
+    min-height: 22px;
+    margin-bottom: 8px;
+}
+
+.visor-resultado {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 48px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.1;
+    word-break: break-all;
+    transition: font-size 0.2s ease;
+}
+
+/* ================================ */
+/*       CAMPOS DE INPUT             */
+/* ================================ */
+.inputs {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.campo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    padding-left: 4px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 400;
+    text-align: center;
+    color: #ffffff;
+    background: #12121f;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.campo input::placeholder {
+    color: rgba(255, 255, 255, 0.12);
+}
+
+.campo input:focus {
+    border-color: rgba(255, 149, 0, 0.5);
+    box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 149, 0, 0.08);
+}
+
+/* Remover setas dos inputs */
+.campo input::-webkit-outer-spin-button,
+.campo input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.campo input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* ================================ */
+/*     BOTÕES DE OPERAÇÃO            */
+/* ================================ */
+.operacoes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.15s ease;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+}
+
+/* Efeito ripple */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s, opacity 0.4s;
+    opacity: 0;
+}
+
+.btn:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: 0s;
+}
+
+/* Estilo dos botões de operação */
+.btn-op {
+    height: 68px;
+    border-radius: 16px;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(145deg, #ff9500, #e08600);
+    color: #fff;
+    box-shadow:
+        0 4px 14px rgba(255, 149, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-op:hover {
+    background: linear-gradient(145deg, #ffaa30, #f09500);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(255, 149, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-op:active {
+    transform: translateY(1px);
+    background: linear-gradient(145deg, #cc7a00, #b36b00);
+    box-shadow: 0 2px 6px rgba(255, 149, 0, 0.15);
+}
+
+/* ================================ */
+/*        BOTÃO LIMPAR               */
+/* ================================ */
+.btn-limpar {
+    width: 100%;
+    height: 52px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: linear-gradient(145deg, #2a2a44, #222238);
+    color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.btn-limpar:hover {
+    background: linear-gradient(145deg, #ff3b3b, #cc2e2e);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow:
+        0 6px 18px rgba(255, 59, 59, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-limpar:active {
+    transform: translateY(1px);
+}
+
+/* ================================ */
+/*     ANIMAÇÃO DOS BOTÕES           */
+/* ================================ */
+.btn-op {
+    animation: surgirBtn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.operacoes .btn-op:nth-child(1) { animation-delay: 0.25s; }
+.operacoes .btn-op:nth-child(2) { animation-delay: 0.30s; }
+.operacoes .btn-op:nth-child(3) { animation-delay: 0.35s; }
+.operacoes .btn-op:nth-child(4) { animation-delay: 0.40s; }
+
+.btn-limpar {
+    animation: surgirBtn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+@keyframes surgirBtn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ================================ */
+/*          RESPONSIVO               */
+/* ================================ */
+@media (max-width: 420px) {
+    .calculadora {
+        width: 100%;
+        border-radius: 0;
+        min-height: 100vh;
+        padding: 24px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
