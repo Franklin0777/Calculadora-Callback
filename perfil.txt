@@ -1,7 +1,0 @@
-Nome: Franklin
-Curso: ADS
-Linguagens: JavaScript, Python
-Objetivo: Ser um grande desenvolvedor
-
-Hobbies: Programar, jogar videogame, estudar tecnologia
-GitHub: github.com/Franklin0777
